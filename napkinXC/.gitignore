@@ -1,0 +1,34 @@
+# C++ & CMake
+**/CMakeCache.txt
+**/CMakeFiles
+**/CMakeScripts
+**/cmake_install.cmake
+**/Makefile
+*.cbp
+*.a
+*.so
+*.dylib
+
+# Python
+/dist
+/build
+/pybind11
+/src/version.h
+/src/nmslib
+*.pyc
+
+# Cpp
+nxc
+
+# Docs
+docs/*/*
+
+# Experiments and examples
+data
+/models*
+/results*
+eurlex-model
+
+# Misc
+.idea
+.DS_Store
