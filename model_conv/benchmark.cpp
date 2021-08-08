@@ -256,12 +256,27 @@ void TestDataSet(const std::filesystem::path& path) {
 	Y.free_underlying_memory();
 }
 
-int main() {
-	auto path = std::filesystem::path(DATA_DIR);
+int main(int argc, char *argv[]) {
 
-	for (auto entry : std::filesystem::directory_iterator(path)) {
-		if (entry.is_directory()) {
-			TestDataSet(entry.path());
+	std::vector<std::filesystem::path> data_dirs;
+
+	if (argc < 2) {
+		auto path = std::filesystem::path(DATA_DIR);
+
+		for (auto entry : std::filesystem::directory_iterator(path)) {
+			if (entry.is_directory()) {
+				data_dirs.emplace_back(entry.path());
+			}
+		}
+	} else {
+		for (int i = 1; i < argc; ++i) {
+			data_dirs.emplace_back(argv[i]);
+		}
+	}
+
+	for (auto dir : data_dirs) {
+		if (std::filesystem::exists(dir) && std::filesystem::is_directory(dir)) {
+			TestDataSet(dir);
 		}
 	}
 }

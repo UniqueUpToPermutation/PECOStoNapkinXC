@@ -207,10 +207,10 @@ int main(int argc, char *argv[]) {
 
 	if (argc < 2) {
 		std::filesystem::path data_dir = DATA_DIR;
-		model_dirs.emplace_back(data_dir / "eurlex-4k");
-		model_dirs.emplace_back(data_dir / "amazoncat-13k");
-		model_dirs.emplace_back(data_dir / "wiki10-31k");
-		model_dirs.emplace_back(data_dir / "wiki-500k");
+		model_dirs.emplace_back(data_dir / "eurlex-4k" / "model");
+		model_dirs.emplace_back(data_dir / "amazoncat-13k" / "model");
+		model_dirs.emplace_back(data_dir / "wiki10-31k" / "model");
+		model_dirs.emplace_back(data_dir / "wiki-500k" / "model");
 	} else {
 		for (int i = 1; i < argc; ++i) {
 			model_dirs.emplace_back(argv[i]);
@@ -218,8 +218,8 @@ int main(int argc, char *argv[]) {
 	}
 
 	for (auto dir_entry : model_dirs) {
-		std::filesystem::path pecosModelPath = dir_entry / "model" / "ranker";
-		std::filesystem::path napkinXCModelPath = dir_entry / "napkin-model";
+		std::filesystem::path pecosModelPath = dir_entry / "ranker";
+		std::filesystem::path napkinXCModelPath = dir_entry / ".." / "napkin-model";
 		if (std::filesystem::exists(pecosModelPath)) {
 			std::cout << "Found PECOS model " << pecosModelPath << "..." << std::endl;
 			ConvertModel(pecosModelPath, napkinXCModelPath);
