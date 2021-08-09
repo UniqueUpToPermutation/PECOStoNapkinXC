@@ -185,9 +185,9 @@ void ConvertModel(std::filesystem::path path, std::filesystem::path out_path) {
 		auto current_dir = std::filesystem::current_path();
 
 		std::filesystem::current_path(_model_dir_out);
-
 		Args args;
-		args.loadFromFile(std::filesystem::absolute(_model_dir_out / "args.bin"));
+		args.loadFromFile("args.bin");		
+
        	BatchPLT model_;
 		model_.load(args, args.output);
 
