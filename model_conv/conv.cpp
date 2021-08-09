@@ -172,8 +172,6 @@ void ConvertModel(std::filesystem::path path, std::filesystem::path out_path) {
 		delete tree;
 		_os_tree.close();
 
-		std::cout << "Verifying that NapkinXC can load model..." << std::endl;
-
 		Args args;
 		args.modelType = ModelType::plt;
 
@@ -182,18 +180,16 @@ void ConvertModel(std::filesystem::path path, std::filesystem::path out_path) {
 	}
 
 	{
+		std::cout << "Verifying that NapkinXC can load model..." << std::endl;
+
 		auto current_dir = std::filesystem::current_path();
 
 		std::filesystem::current_path(_model_dir_out);
 
 		Args args;
 		args.loadFromFile(_model_dir_out / "args.bin");
-       	auto model_ = Model::factory(args);
-
-        if (!model_->isLoaded()) 
-			model_->load(args, args.output);
-		else 
-			throw std::runtime_error("Cannot load!");
+       	BatchPLT model_;
+		model_.load(args, args.output);
 
 		std::filesystem::current_path(current_dir);
 
@@ -211,6 +207,7 @@ int main(int argc, char *argv[]) {
 		model_dirs.emplace_back(data_dir / "amazoncat-13k" / "model");
 		model_dirs.emplace_back(data_dir / "wiki10-31k" / "model");
 		model_dirs.emplace_back(data_dir / "wiki-500k" / "model");
+		model_dirs.emplace_back(data_dir / "amazon-670k" / "model");
 	} else {
 		for (int i = 1; i < argc; ++i) {
 			model_dirs.emplace_back(argv[i]);
@@ -218,7 +215,7 @@ int main(int argc, char *argv[]) {
 	}
 
 	for (auto dir_entry : model_dirs) {
-		std::filesystem::path pecosModelPath = dir_entry / "ranker";
+		std::filesystem::path pecosModelPath = dir_entry;
 		std::filesystem::path napkinXCModelPath = dir_entry / ".." / "napkin-model";
 		if (std::filesystem::exists(pecosModelPath)) {
 			std::cout << "Found PECOS model " << pecosModelPath << "..." << std::endl;

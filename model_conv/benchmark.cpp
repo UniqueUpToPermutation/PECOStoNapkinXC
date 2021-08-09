@@ -134,7 +134,7 @@ void ComputeRecallPrecision(
 void TestDataSet(const std::filesystem::path& path) {
 
 	// Verify that we have both a napkin and pecos model
-	auto pecos_path = path / "model" / "ranker";
+	auto pecos_path = path / "model";
 	auto napkin_path = path / "napkin-model";
 
 	if (!std::filesystem::exists(pecos_path) || !std::filesystem::is_directory(pecos_path)) {
