@@ -35,3 +35,7 @@ ModelBenchmark [dataset_path_1] [dataset_path_2] ... [dataset_path_n]
 where **[dataset_path_i]** contains a **X.tst.tfidf.npz** (test data features) file and a **Y.tst.npz** file (test data matches), as well as a **model** folder containing a PECOS model and a **napkin-model** folder containing a NapkinXC model. ModelBenchmark will load test data and models for each of the datasets and spit out precision/recall metrics as well as CPU time on one thread.
 
 If no arguments are provided, ModelBenchmark will benchmark all subdirectories of the **./data/** folder relative to the CMake project root.
+
+## Datasets
+
+You can download some pre-trained PECOS models and corresponding datasets [here](https://drive.google.com/file/d/1Md-wlSiXVTNxWxJ9FRaiWUCq2nr0ngVT/view).
