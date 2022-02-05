@@ -38,4 +38,4 @@ If no arguments are provided, ModelBenchmark will benchmark all subdirectories o
 
 ## Datasets
 
-You can download some pre-trained PECOS models and corresponding datasets [here](https://drive.google.com/file/d/1Md-wlSiXVTNxWxJ9FRaiWUCq2nr0ngVT/view).
+You can download some pre-trained PECOS models and corresponding datasets from [this link](https://archive.org/download/pecos-dataset/inference-models/).
